@@ -22,6 +22,14 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6' in user conf
 # Install solarized theme...
 
+
+
+# VIM
+wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+
+
+
 # Google chrome
 # First download it @ www.google.com/chrome
 cd ~/Downloads
