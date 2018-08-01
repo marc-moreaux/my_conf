@@ -6,12 +6,12 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" Vundle Pluggins 
+" Vundle Pluggin 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'scrooloose/nerdtree'
-Plugin 'majutsushi/tagbar'
-Plugin 'powerline/powerline'
+
+
+" programing
+Plugin 'tpope/vim-fugitive'
 " Smart auto-indentation for Python
 Plugin 'vim-scripts/indentpython.vim'
 " Auto-completing engine
@@ -20,16 +20,23 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 " Python backend for 'syntastic'
 Plugin 'nvie/vim-flake8'
-" Status bar (powerline)
-Plugin 'vim-airline/vim-airline'
-" Awesome start screen for Vim
-Plugin 'mhinz/vim-startify'
-" Search bar
-Plugin 'kien/ctrlp.vim'
 " Powerful commenting utility
 Plugin 'scrooloose/nerdcommenter'
 " Rich python syntax highlighting
 Plugin 'kh3phr3n/python-syntax'
+
+
+" Visual
+Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+" Status bar (powerline)
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+" Awesome start screen for Vim
+Plugin 'mhinz/vim-startify'
+" Search bar
+Plugin 'kien/ctrlp.vim'
+Plugin 'flazz/vim-colorschemes'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -45,6 +52,7 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
+let g:airline_theme='angr'
 
 
 " line spacing
@@ -107,4 +115,7 @@ if shell_error == 0
 else
   let g:ycm_python_binary_path = 'python'
 endif
+
+
+
 

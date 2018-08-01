@@ -51,4 +51,6 @@ cd ~/my_conf/
 ln -s my_conf/.bashrc ~/bashrc
 ln -s my_conf/.zshrc ~/zshrc
 ln -s my_conf/.vimrc ~/vimrc
+sudo pip install powerline-status
+sudo apt-get install fonts-powerline
 
