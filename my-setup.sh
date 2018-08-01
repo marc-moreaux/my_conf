@@ -47,3 +47,8 @@ sudo pip install pandas
 sudo pip install pipenv
 
 
+cd ~/my_conf/
+ln -s my_conf/.bashrc ~/bashrc
+ln -s my_conf/.zshrc ~/zshrc
+ln -s my_conf/.vimrc ~/vimrc
+
