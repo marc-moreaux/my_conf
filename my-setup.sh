@@ -8,6 +8,18 @@ sudo apt-get install -f
 sudo apt-get install guake tmux vim git
 
 
+# VIM things
+sudo apt-get install dh-autoreconf
+cd /tmp/installs
+git clone https://github.com/universal-ctags/ctags.git
+cd ctags
+./autogen.sh 
+./configure
+make
+sudo make install
+cd ..
+rm -rf ctags
+
 echo '********************'
 echo '> clone repository'
 echo '********************'i
