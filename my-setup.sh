@@ -8,7 +8,21 @@ sudo apt-get install -f
 sudo apt-get install guake tmux vim git
 
 
-# VIM things
+echo '********************'
+echo '> clone repository'
+echo '********************'i
+read -p "Enter your email address :" email
+ssh-keygen -t rsa -b 4096 -C $email 
+cd ~/
+git clone https://github.com/marc-moreaux/my_conf.git 
+rm .bashrc .vimrc .zshrc
+ln -s my_conf/bashrc ~/.bashrc
+ln -s my_conf/vimrc ~/.vimrc
+
+
+echo '********************'
+echo '> Install VIM'
+echo '********************'
 sudo apt-get install dh-autoreconf
 cd /tmp/installs
 git clone https://github.com/universal-ctags/ctags.git
@@ -19,18 +33,12 @@ make
 sudo make install
 cd ..
 rm -rf ctags
-
-echo '********************'
-echo '> clone repository'
-echo '********************'i
-read -p "Enter your email address :" email
-ssh-keygen -t rsa -b 4096 -C $email 
+vim -c 'PluginInstall' -c 'qa!'
+sudo apt-get install build-essential cmake
+sudo apt-get install python-dev python3-dev
+cd ~/.vim/bundle/YouCompleteMe
+./install.py --clang-completer
 cd ~/
-git clone https://github.com/marc-moreaux/my_conf.git 
-rm .bashrc .vimrc .zshrc
-ln -s my_conf/.bashrc ~/.bashrc
-ln -s my_conf/.zshrc ~/.zshrc
-ln -s my_conf/.vimrc ~/.vimrc
 
 
 echo '********************'
@@ -48,6 +56,7 @@ echo '********************'
 sudo apt-get install build-essential gfortran libatlas-base-dev python-pip python-dev libfreetype6-dev libffi-dev libcupti-dev
 sudo pip install -U pip
 sudo pip install numpy
+sudo pip install matplotlib
 sudo pip install pandas
 sudo pip install pipenv
 
@@ -87,10 +96,7 @@ sudo apt-get install fonts-powerline
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 chsh -s /bin/zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-# in .zshrc :
-# set theme to agnoster
-# add zsh-autosuggestions in plugins
-# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6' in user conf
-# Install solarized theme...
+rm ~/.zshrc
+ln -s my_conf/zshrc ~/.zshrc
 
 
