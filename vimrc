@@ -57,6 +57,7 @@ let g:airline_theme='angr'
 
 " line spacing
 set number
+set relativenumber
 filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
@@ -116,6 +117,8 @@ else
   let g:ycm_python_binary_path = 'python'
 endif
 
+" ESC shortcut
+inoremap kj <esc>
 
 
 
