@@ -84,6 +84,8 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-l> <C-w>l
 map <C-k> <C-w>k
+set splitbelow
+set splitright
 
 
 " buffer management
