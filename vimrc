@@ -55,6 +55,9 @@ colorscheme solarized
 let g:airline_theme='angr'
 
 
+"""""""""""""""""""""""""""""""""
+" VISUAL
+
 " line spacing
 set number
 set relativenumber
@@ -62,7 +65,6 @@ filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
 set expandtab
-nmap <C-o> o<Esc>
 
 if has("autocmd")
     " Enable file type detection
@@ -79,6 +81,21 @@ if has("autocmd")
 
 endif
 
+" show invisible character on :set list
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
+
+" keep visual when shifting
+vnoremap < <gv
+vnoremap > >gv
+
+
+"""""""""""""""""""""""""""""""""
+" BUFFER AND WINDOWS
+
+" buffer management
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprevious<CR>
+
 " window management
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -88,18 +105,29 @@ set splitbelow
 set splitright
 
 
-" buffer management
-nnoremap <C-n> :bnext<CR>
-nnoremap <C-p> :bprevious<CR>
+"""""""""""""""""""""""""""""""""
+" PYTHON
 
-
-" show invisible character on :set list
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
-
-
-" keep visual when shifting
-vnoremap < <gv
-vnoremap > >gv
+" python3 << EOL
+" import vim
+" # Do not say 'from vim import *' because that
+" # will delete builtin function eval.
+" 
+" def EvaluateCurrentLine(*args):
+"     cur_str = vim.current.line
+"     action, symb = None, None
+"     for i in args:
+"         if i in ["r","p"]: action = i
+"         else: symb = i
+"     try: start = cur_str.rindex(symb)+len(symb)
+"     except: start = 0
+"     result = eval(cur_str[start:],globals())
+"     if action == "r":
+"         vim.current.line = cur_str[:start]+str(result)
+"     else:
+"         print(result)
+" EOL
+" map <leader>pp :python3 EvaluateCurrentLine()<CR>
 
 
 " Point YCM to the Pipenv created virtualenv, if possible
@@ -118,6 +146,10 @@ if shell_error == 0
 else
   let g:ycm_python_binary_path = 'python'
 endif
+
+
+"""""""""""""""""""""""""""""""""
+" INSERT MODE
 
 " ESC shortcut
 inoremap kj <esc>
