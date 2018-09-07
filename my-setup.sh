@@ -32,6 +32,7 @@ echo '********************'
 echo '> Install VIM'
 echo '********************'
 sudo apt-get install dh-autoreconf
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cd /tmp/installs
 git clone https://github.com/universal-ctags/ctags.git
 cd ctags
