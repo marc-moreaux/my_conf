@@ -2,6 +2,15 @@
 mkdir -p /tmp/installs
 
 
+echo '********************'
+echo '> user preferences'
+echo '********************'i
+if [ -f '~.ssh/id_rsa' ] ; then
+    read -p "For Git (ssh-keygen), enter your email address :" email
+fi
+read -p "do you want to install CUDA ?(y/n)" do_cuda
+
+
 # Some installs 
 sudo apt-get install guake
 sudo apt-get install -f
@@ -11,7 +20,6 @@ sudo apt-get install guake tmux vim git
 echo '********************'
 echo '> clone repository'
 echo '********************'i
-read -p "Enter your email address :" email
 ssh-keygen -t rsa -b 4096 -C $email 
 cd ~/
 git clone https://github.com/marc-moreaux/my_conf.git 
@@ -64,27 +72,28 @@ sudo pip install pipenv
 echo '********************'
 echo '> Install CUDA'
 echo '********************'
-# https://www.nvidia.com/en-us/data-center/gpu-accelerated-applications/tensorflow/
-sudo add-apt-repository ppa:graphics-drivers/ppa
-sudo apt update
-sudo apt-get install nvidia-396
-wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
-sudo dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
-sudo apt-key add /var/cuda-repo-9-0-local/7fa2af80.pub
-sudo apt-get update
-sudo apt-get install cuda
-echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.bashrc
-echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
-# cudnn needs hand DL :/
-# https://developer.nvidia.com/rdp/cudnn-download
-cd ~/Downloads
-tar -xzvf cudnn-9.0-linux-x64-v7.1.tgz
-sudo cp cuda/include/cudnn.h /usr/local/cuda/include
-sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
-sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
-rm cudnn-9.0-linux-x64-v7.1.tgz
-rm -rf cuda
-
+if [ $do_cuda = 'y' ]; then
+    # https://www.nvidia.com/en-us/data-center/gpu-accelerated-applications/tensorflow/
+    sudo add-apt-repository ppa:graphics-drivers/ppa
+    sudo apt update
+    sudo apt-get install nvidia-396
+    wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
+    sudo dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
+    sudo apt-key add /var/cuda-repo-9-0-local/7fa2af80.pub
+    sudo apt-get update
+    sudo apt-get install cuda
+    echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.bashrc
+    echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+    # cudnn needs hand DL :/
+    # https://developer.nvidia.com/rdp/cudnn-download
+    cd ~/Downloads
+    tar -xzvf cudnn-9.0-linux-x64-v7.1.tgz
+    sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+    sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+    sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+    rm cudnn-9.0-linux-x64-v7.1.tgz
+    rm -rf cuda
+fi
 
 
 echo '********************'
