@@ -88,6 +88,9 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
 vnoremap < <gv
 vnoremap > >gv
 
+" show 80's column boundary
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
 
 """""""""""""""""""""""""""""""""
 " BUFFER AND WINDOWS
