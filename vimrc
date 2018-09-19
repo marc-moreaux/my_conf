@@ -37,6 +37,7 @@ Plugin 'mhinz/vim-startify'
 " Search bar
 Plugin 'kien/ctrlp.vim'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'sjl/gundo.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -94,6 +95,8 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
 vnoremap < <gv
 vnoremap > >gv
 
+" Gundo python 3
+let g:gundo_prefer_python3 = 1
 
 """""""""""""""""""""""""""""""""
 " BUFFER AND WINDOWS
