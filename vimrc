@@ -58,6 +58,9 @@ let g:airline_theme='angr'
 """""""""""""""""""""""""""""""""
 " VISUAL
 
+" show 80's column boundary
+highlight ColorColumn ctermbg=magenta
+
 " line spacing
 set number
 set relativenumber
@@ -79,6 +82,9 @@ if has("autocmd")
     autocmd FileType css setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 
+    " 80th char coloration in python
+    autocmd FileType python call matchadd('ColorColumn', '\%81v', 100)
+
 endif
 
 " show invisible character on :set list
@@ -88,9 +94,6 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
 vnoremap < <gv
 vnoremap > >gv
 
-" show 80's column boundary
-highlight ColorColumn ctermbg=magenta
-call matchadd('ColorColumn', '\%81v', 100)
 
 """""""""""""""""""""""""""""""""
 " BUFFER AND WINDOWS
