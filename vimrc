@@ -1,3 +1,6 @@
+"""""""""""""""""""""""""""""""""
+" Plugin management
+
 " Vundle pluggin management
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -8,7 +11,6 @@ call vundle#begin()
 
 " Vundle Pluggin 
 Plugin 'VundleVim/Vundle.vim'
-
 
 " programing
 Plugin 'tpope/vim-fugitive'
@@ -24,7 +26,8 @@ Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdcommenter'
 " Rich python syntax highlighting
 Plugin 'kh3phr3n/python-syntax'
-
+" Python syntax folding
+Plugin 'tmhedberg/SimpylFold'
 
 " Visual
 Plugin 'scrooloose/nerdtree'
@@ -42,8 +45,16 @@ Plugin 'sjl/gundo.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" Plungin preferences
+let g:gundo_prefer_python3 = 1
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_import = 0
 
-" Use Solarized
+
+"""""""""""""""""""""""""""""""""
+" VISUAL EFFECTS OR RENDER
+
+" Change syntax highlighting
 set  rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 set laststatus=2
 set t_Co=256
@@ -53,11 +64,8 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
+colorscheme colorsbox-stblue
 let g:airline_theme='angr'
-
-
-"""""""""""""""""""""""""""""""""
-" VISUAL
 
 " show 80's column boundary
 highlight ColorColumn ctermbg=magenta
@@ -91,12 +99,6 @@ endif
 " show invisible character on :set list
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
 
-" keep visual when shifting
-vnoremap < <gv
-vnoremap > >gv
-
-" Gundo python 3
-let g:gundo_prefer_python3 = 1
 
 """""""""""""""""""""""""""""""""
 " BUFFER AND WINDOWS
@@ -112,6 +114,29 @@ map <C-l> <C-w>l
 map <C-k> <C-w>k
 set splitbelow
 set splitright
+
+
+"""""""""""""""""""""""""""""""""
+" NORMAL MODE
+nnoremap Y y$
+
+
+"""""""""""""""""""""""""""""""""
+" VISUAL MODE
+
+" keep visual when shifting
+vnoremap < <gv
+vnoremap > >gv
+
+
+"""""""""""""""""""""""""""""""""
+" INSERT MODE
+
+" ESC shortcut
+inoremap jj <esc>
+
+" Clipbpard is shared with yank
+set clipboard=unnamedplus
 
 
 """""""""""""""""""""""""""""""""
@@ -155,13 +180,6 @@ if shell_error == 0
 else
   let g:ycm_python_binary_path = 'python'
 endif
-
-
-"""""""""""""""""""""""""""""""""
-" INSERT MODE
-
-" ESC shortcut
-inoremap kj <esc>
 
 
 
