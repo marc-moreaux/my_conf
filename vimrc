@@ -28,6 +28,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'kh3phr3n/python-syntax'
 " Python syntax folding
 Plugin 'tmhedberg/SimpylFold'
+" Build util for asyncronus build
+Plugin 'skywind3000/asyncrun.vim'
 
 " Visual
 Plugin 'scrooloose/nerdtree'
