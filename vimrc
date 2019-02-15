@@ -128,7 +128,7 @@ endif
 if !isdirectory($HOME."/.vim/undo-dir")
     call mkdir($HOME."/.vim/undo-dir", "", 0700)
 endif
-echom system('find $HOME/.vim/undo-dir -type f -mtime +90 -delete')
+call system('find $HOME/.vim/undo-dir -type f -mtime +90 -delete')
 set undodir=~/.vim/undo-dir
 set undofile
 
@@ -159,28 +159,13 @@ set clipboard=unnamedplus
 """""""""""""""""""""""""""""""""
 " PYTHON
 
-" python3 << EOL
-" import vim
-" # Do not say 'from vim import *' because that
-" # will delete builtin function eval.
-" 
-" def EvaluateCurrentLine(*args):
-"     cur_str = vim.current.line
-"     action, symb = None, None
-"     for i in args:
-"         if i in ["r","p"]: action = i
-"         else: symb = i
-"     try: start = cur_str.rindex(symb)+len(symb)
-"     except: start = 0
-"     result = eval(cur_str[start:],globals())
-"     if action == "r":
-"         vim.current.line = cur_str[:start]+str(result)
-"     else:
-"         print(result)
-" EOL
-" map <leader>pp :python3 EvaluateCurrentLine()<CR>
+nnoremap <leader>pe iimport IPython; IPython.embed()
+inoremap <leader>pe import IPython; IPython.embed()
+nnoremap <leader>pp iprint(
+inoremap <leader>pp print(
 
 
+" Virtual env management
 " Point YCM to the Pipenv created virtualenv, if possible
 " At first, get the output of 'pipenv --venv' command.
 let pipenv_venv_path = system('pipenv --venv')
