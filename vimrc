@@ -119,6 +119,21 @@ set splitright
 
 
 """""""""""""""""""""""""""""""""
+" UNDO DIRECTORY
+
+" Let's save undo info!
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+echom system('find $HOME/.vim/undo-dir -type f -mtime +90 -delete')
+set undodir=~/.vim/undo-dir
+set undofile
+
+
+"""""""""""""""""""""""""""""""""
 " NORMAL MODE
 nnoremap Y y$
 
