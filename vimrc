@@ -119,6 +119,21 @@ set splitright
 
 
 """""""""""""""""""""""""""""""""
+" UNDO DIRECTORY
+
+" Let's save undo info!
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+call system('find $HOME/.vim/undo-dir -type f -mtime +90 -delete')
+set undodir=~/.vim/undo-dir
+set undofile
+
+
+"""""""""""""""""""""""""""""""""
 " NORMAL MODE
 nnoremap Y y$
 
@@ -143,12 +158,12 @@ set clipboard=unnamedplus
 
 """""""""""""""""""""""""""""""""
 " PYTHON
-nnoremap \pe iimport IPython; IPython.embed()<esc>
-inoremap \pe import IPython; IPython.embed()
-nnoremap \pp iprint(
-inoremap \pp print(
+nnoremap <leader>pe iimport IPython; IPython.embed()<esc>
+inoremap <leader>pe import IPython; IPython.embed()
+nnoremap <leader>pp iprint(
+inoremap <leader>pp print(
 
-" Python pipenv
+" Virtual env management
 " Point YCM to the Pipenv created virtualenv, if possible
 " At first, get the output of 'pipenv --venv' command.
 let pipenv_venv_path = system('pipenv --venv')
