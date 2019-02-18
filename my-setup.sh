@@ -14,7 +14,7 @@ read -p "do you want to install CUDA ?(y/n)" do_cuda
 # Some installs 
 sudo apt-get install guake
 sudo apt-get install -f
-sudo apt-get install guake tmux vim git
+sudo apt-get install guake tmux vim git tree
 
 
 echo '********************'
