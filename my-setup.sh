@@ -9,6 +9,7 @@ if [ -f '~.ssh/id_rsa' ] ; then
     read -p "For Git (ssh-keygen), enter your email address :" email
 fi
 read -p "do you want to install CUDA ?(y/n)" do_cuda
+read -p "do you want to install i3-gaps ?(y/n)" do_i3
 
 
 # Some installs 
@@ -110,3 +111,33 @@ rm ~/.zshrc
 ln -s my_conf/zshrc ~/.zshrc
 
 
+echo '********************'
+echo '> Install i3-gaps'
+echo '********************'
+if [ $do_i3 = 'y' ]; then
+    sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool 
+
+    # apt install libxcb-xrm-dev does not work,
+    # use this instead:
+    cd /tmp
+    git clone https://github.com/Airblader/xcb-util-xrm
+    cd xcb-util-xrm
+    git submodule update --init
+    ./autogen.sh --prefix=/usr
+    make
+    sudo make install
+
+    # Also build and deploy i3-gaps...
+    cd /tmp
+    git clone https://www.github.com/Airblader/i3 i3-gaps
+    cd i3-gaps
+    git checkout gaps && git pull
+    autoreconf --force --install
+    rm -rf build
+    mkdir build
+    cd build
+    ../configure --prefix=/usr --sysconfdir=/etc
+    make
+    sudo make install
+
+fi
