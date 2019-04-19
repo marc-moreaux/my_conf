@@ -135,7 +135,15 @@ set undofile
 
 """""""""""""""""""""""""""""""""
 " NORMAL MODE
+
+" Yank line from current position
 nnoremap Y y$
+
+" Remap arrows to window reshape
+nnoremap <up> <C-W>+
+nnoremap <down> <C-W>-
+nnoremap <right> <C-W>>
+nnoremap <left> <C-W><
 
 
 """""""""""""""""""""""""""""""""
