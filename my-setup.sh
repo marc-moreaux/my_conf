@@ -24,8 +24,11 @@ ssh-keygen -t rsa -b 4096 -C $email
 cd ~/
 git clone https://github.com/marc-moreaux/my_conf.git 
 rm .bashrc .vimrc .zshrc
+mkdir ~/.config
+mkdir ~/.config/i3
 ln -s my_conf/bashrc ~/.bashrc
 ln -s my_conf/vimrc ~/.vimrc
+ln -s my_conf/i3config ~/.config/i3/config
 
 
 echo '********************'
