@@ -27,9 +27,9 @@ git clone https://github.com/marc-moreaux/my_conf.git
 rm .bashrc .vimrc .zshrc
 mkdir ~/.config
 mkdir ~/.config/i3
-ln -s my_conf/bashrc ~/.bashrc
-ln -s my_conf/vimrc ~/.vimrc
-ln -s my_conf/i3config ~/.config/i3/config
+ln -s ~/my_conf/bashrc ~/.bashrc
+ln -s ~/my_conf/vimrc ~/.vimrc
+ln -s ~/my_conf/i3config ~/.config/i3/config
 
 
 echo '********************'
@@ -111,7 +111,7 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 chsh -s /bin/zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 rm ~/.zshrc
-ln -s my_conf/zshrc ~/.zshrc
+ln -s ~/my_conf/zshrc ~/.zshrc
 
 
 echo '********************'
