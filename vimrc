@@ -166,12 +166,10 @@ set clipboard=unnamedplus
 
 """""""""""""""""""""""""""""""""
 " PYTHON
-
-nnoremap <leader>pe iimport IPython; IPython.embed()
+nnoremap <leader>pe iimport IPython; IPython.embed()<esc>
 inoremap <leader>pe import IPython; IPython.embed()
 nnoremap <leader>pp iprint(
 inoremap <leader>pp print(
-
 
 " Virtual env management
 " Point YCM to the Pipenv created virtualenv, if possible
