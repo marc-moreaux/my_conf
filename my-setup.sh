@@ -30,6 +30,7 @@ mkdir ~/.config/i3
 ln -s ~/my_conf/bashrc ~/.bashrc
 ln -s ~/my_conf/vimrc ~/.vimrc
 ln -s ~/my_conf/i3config ~/.config/i3/config
+ln -s ~/my_conf/i3blocksConfig ~/.config/i3blocks/config
 
 
 echo '********************'

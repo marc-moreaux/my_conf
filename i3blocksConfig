@@ -1,0 +1,114 @@
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# Change $SCRIPT_DIR to the location of your scripts!
+
+
+#####################
+command=$SCRIPT_DIR/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+#####################
+[mainHDD]
+label=HDD
+command=$SCRIPT_DIR/disk
+interval=30
+
+separator=false
+separator_block_width=0.1
+
+[dataHDD]
+label=/
+command=$SCRIPT_DIR/disk 
+instance=/media/mmoreaux/Data
+interval=30
+
+separator=false
+separator_block_width=0.1
+
+[windowHDD]
+label=/
+command=$SCRIPT_DIR/disk 
+instance=/media/mmoreaux/windows
+interval=30
+
+#####################
+[RAM]
+label=RAM
+command=$SCRIPT_DIR/memory
+instance=mem
+interval=10
+color=#7ea1a5
+
+separator=false
+separator_block_width=0.1
+
+[SWAP]
+label=/
+command=$SCRIPT_DIR/memory
+instance=swap
+interval=10
+color=#7ea1a5
+
+#####################
+[load_average]
+label=CPU
+command=$SCRIPT_DIR/load_average
+interval=10
+
+separator=false
+separator_block_width=0.1
+
+[temperature]
+command=$SCRIPT_DIR/temperature
+interval=10
+#T_WARN=70
+
+#separator=false
+#separator_block_width=0.1
+
+#[gpu-load]
+#label=GPU
+#command=$SCRIPT_DIR/gpu-load
+#label=GPU
+#interval=10
+#min_width=GPU 100% 100% 100% 100%
+#T_WARN=70
+#T_CRIT=90
+#####################
+[battery]
+label=🔋
+command=$SCRIPT_DIR/battery
+interval=30
+
+[volume]
+label=♪
+command=$SCRIPT_DIR/volume
+interval=10
+
+[time]
+command=date '+%d/%m/%Y %H:%M'
+interval=1color=#1793D1
+
