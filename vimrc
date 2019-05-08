@@ -106,8 +106,8 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
 " BUFFER AND WINDOWS
 
 " buffer management
-nnoremap <C-n> :bnext<CR>
-nnoremap <C-p> :bprevious<CR>
+nnoremap ]b :bnext<CR>
+nnoremap [b :bprevious<CR>
 
 " window management
 map <C-h> <C-w>h
