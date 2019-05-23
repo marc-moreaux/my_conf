@@ -118,7 +118,7 @@ echo '********************'
 echo '> Install i3-gaps'
 echo '********************'
 if [ $do_i3 = 'y' ]; then
-    sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool 
+    sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool dmenu i3blocks
 
     # apt install libxcb-xrm-dev does not work,
     # use this instead:
@@ -143,4 +143,12 @@ if [ $do_i3 = 'y' ]; then
     make
     sudo make install
 
+    # And set i3 blocks
+    git clone https://github.com/vivien/i3blocks-contrib ~/.config/i3blocks
+    cp ~/.config/config.example ~/.config/config
+
 fi
+
+# Install simple terminal
+sudo apt-get install libx11-dev libxft-dev libxext-dev
+git clone https://git.suckless.org/st
