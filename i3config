@@ -14,10 +14,13 @@ set $mod Mod4
 # Startup commands
 exec_always xset r rate 150 70
 exec_always redshift
+exec_always xrandr --output HDMI-1-3 --rotate left
+exec_always sudo mkdir /media/moreaux-gpu/Data
+exec_always sudo mount /dev/sda1 /media/moreaux-gpu/Data
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioRaiseVolume exec amixer set 'Master' 5%+ # pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec amixer set 'Master' 5%- # pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -41,10 +44,10 @@ floating_modifier $mod
 # bind some programs
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec gnome-terminal
-bindsym $mod+Shift+g exec google-chrome-stable 
-bindsym $mod+Shift+d exe gnome-terminal -e ranger
-bindsym $mod+Shift+v exec gnome-terminal -e vim
-bindsym $mod+c exec stterm -e vim ~/.config/i3/config
+bindsym $mod+g exec google-chrome-stable 
+bindsym $mod+r exec gnome-terminal -e ranger
+bindsym $mod+v exec gnome-terminal -e vim
+bindsym $mod+c exec st -e vim ~/.config/i3/config
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -82,10 +85,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+semicolon split h
+#bindsym $mod+semicolon split h
 
-# split in vertical orientation
-bindsym $mod+v split v
+# toggle split direction
+bindsym $mod+semicolon split toggle
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -143,31 +146,41 @@ bindsym $mod+y resize shrink width 1 px or 1 ppt
 bindsym $mod+u resize grow height 1 px or 1 ppt
 bindsym $mod+i resize shrink height 1 px or 1 ppt
 bindsym $mod+o resize grow width 1 px or 1 ppt
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+#mode "resize" {
+        ## These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        ## Pressing left will shrink the window’s width.
+        ## Pressing right will grow the window’s width.
+        ## Pressing up will shrink the window’s height.
+        ## Pressing down will grow the window’s height.
+        #bindsym h resize shrink width 10 px or 10 ppt
+        #bindsym j resize grow height 10 px or 10 ppt
+        #bindsym k resize shrink height 10 px or 10 ppt
+        #bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        ## same bindings, but for the arrow keys
+        #bindsym Left resize shrink width 10 px or 10 ppt
+        #bindsym Down resize grow height 10 px or 10 ppt
+        #bindsym Up resize shrink height 10 px or 10 ppt
+        #bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
+        ## back to normal: Enter or Escape
+        #bindsym Return mode "default"
+        #bindsym Escape mode "default"
+        #bindsym $mod+r mode "default"
+#}
 
-bindsym $mod+r mode "resize"
+#bindsym $mod+r mode "resize"
+
+#Needed for i3-gaps
+#hide_edge_borders both
+for_window [class="^.*"] border pixel 3 
+gaps inner 5 
+gaps outer 10
+
+#Change gap size
+bindsym $mod+z gaps inner current plus 3
+bindsym $mod+Shift+z gaps inner current minus 3
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
