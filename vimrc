@@ -34,6 +34,7 @@ Plugin 'skywind3000/asyncrun.vim'
 " Visual
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
+Plugin 'junegunn/goyo.vim'
 " Status bar (powerline)
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -51,6 +52,7 @@ filetype plugin indent on    " required
 let g:gundo_prefer_python3 = 1
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_import = 0
+let $PYTHONUNBUFFERED=1
 
 
 """""""""""""""""""""""""""""""""
@@ -87,14 +89,16 @@ if has("autocmd")
     " Syntax of these languages is fussy over tabs Vs spaces
     autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
     autocmd FileType yaml setlocal ts=4 sts=4 sw=4 expandtab
-
-    " Customisations based on house-style (arbitrary)
     autocmd FileType html setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType css setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 
-    " 80th char coloration in python
-    autocmd FileType python call matchadd('ColorColumn', '\%81v', 100)
+    " Python
+    autocmd FileType python call matchadd('ColorColumn', '\%81v', 100) " 80th char coloration in python
+    autocmd FileType python nnoremap <F8> :w<CR>:AsyncRun -raw python3 "%"<CR>
+
+    " LaTeX
+    autocmd FileType latex nnoremap <F8> :w<CR>:AsyncRun pdflatex main.tex<CR>evince main.pdf<CR>
 
 endif
 
