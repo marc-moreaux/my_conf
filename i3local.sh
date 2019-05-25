@@ -1,10 +1,6 @@
 
-xrandr --output HDMI-1-3 --rotate left
-mkdir /media/moreaux-gpu/Data
-mount /dev/sda1 /media/moreaux-gpu/Data
-
-
-#exec_always sudo mkdir /media/mmoreaux/Data
-#exec_always sudo mount /dev/sda3 /media/mmoreaux/Data
-#exec_always sudo mkdir /media/mmoreaux/windows
-#exec_always sudo mount /dev/sda2 /media/mmoreaux/windows
+xrandr --output VGA1 --properties --mode 1920x1080_60.00 --right-of LVSD1
+mkdir /media/mmoreaux/Data
+mkdir /media/mmoreaux/windows
+mount /dev/sda3 /media/mmoreaux/Data -o gid=mmoreaux -o uid=mmoreaux -o fmask=133 -o dmask=002
+mount /dev/sda2 /media/mmoreaux/windows -o gid=mmoreaux -o uid=mmoreaux -o fmask=133 -o dmask=002
