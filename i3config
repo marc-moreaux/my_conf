@@ -14,7 +14,6 @@ set $mod Mod4
 # Startup commands
 exec_always xset r rate 150 70
 exec_always redshift
-exec_always sudo i3local.sh 
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec amixer set 'Master' 5%+ # pactl set-sink-volume 0 +5% #increase sound volume
@@ -46,7 +45,10 @@ bindsym $mod+Return exec gnome-terminal
 bindsym $mod+g exec google-chrome-stable 
 bindsym $mod+r exec gnome-terminal -e ranger
 bindsym $mod+v exec gnome-terminal -e vim
-bindsym $mod+c exec st -e vim ~/.config/i3/config
+bindsym $mod+c exec gnome-terminal -e 'vim /home/mmoreaux/my_conf/i3config'
+
+# Change monitor
+bindsym $mod+m exec /usr/local/bin/toggle_monitor.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -133,7 +135,7 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# reload thejconfiguration file
+# reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
@@ -173,9 +175,9 @@ bindsym $mod+o resize grow width 1 px or 1 ppt
 
 #Needed for i3-gaps
 #hide_edge_borders both
-for_window [class="^.*"] border pixel 3 
-gaps inner 5 
-gaps outer 10
+#for_window [class="^.*"] border pixel 3 
+#gaps inner 5 
+#gaps outer 10
 
 #Change gap size
 bindsym $mod+z gaps inner current plus 3
