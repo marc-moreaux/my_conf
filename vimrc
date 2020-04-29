@@ -30,6 +30,8 @@ Plugin 'kh3phr3n/python-syntax'
 Plugin 'tmhedberg/SimpylFold'
 " Build util for asyncronus build
 Plugin 'skywind3000/asyncrun.vim'
+" python and other test env
+Plugin 'janko/vim-test'
 
 " Visual
 Plugin 'scrooloose/nerdtree'
@@ -45,6 +47,9 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'sjl/gundo.vim'
 
+" csv
+Plugin 'chrisbra/csv.vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -54,12 +59,17 @@ let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_import = 0
 let $PYTHONUNBUFFERED=1
 
+" Toggle NerdTree and Tagbar
+nnoremap <F2> :NERDTreeToggle<CR>
+inoremap <F2> <ESC>:NERDTreeToggle<CR>i
+nnoremap <F3> :TagbarToggle<CR>
+inoremap <F3> <ESC>:TagbarToggle<CR>i
 
 """""""""""""""""""""""""""""""""
 " VISUAL EFFECTS OR RENDER
 
 " Change syntax highlighting
-set  rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 set laststatus=2
 set t_Co=256
 syntax enable
@@ -70,6 +80,9 @@ let g:solarized_termcolors=256
 colorscheme solarized
 colorscheme colorsbox-stblue
 let g:airline_theme='angr'
+" To get the white background
+" colorscheme solarized
+" set background=light
 
 " show 80's column boundary
 highlight ColorColumn ctermbg=magenta
@@ -81,6 +94,7 @@ filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
 set expandtab
+let g:tex_flavor = "latex"
 
 if has("autocmd")
     " Enable file type detection
@@ -95,18 +109,30 @@ if has("autocmd")
 
     " Python
     autocmd FileType python call matchadd('ColorColumn', '\%81v', 100) " 80th char coloration in python
-    autocmd FileType python nnoremap <F8> :w<CR>:AsyncRun -raw python3 "%"<CR>
+    autocmd FileType python nnoremap <F8> :w<CR>:AsyncRun -raw python3.7 "%"<CR>
 
     " LaTeX
-    autocmd FileType latex nnoremap <F8> :w<CR>:AsyncRun pdflatex main.tex<CR>evince main.pdf<CR>
+    autocmd FileType tex vnoremap <leader>bf I\textbf{<esc>gvllllllllA}<esc>
+    autocmd FileType tex vnoremap <leader>it I\textit{<esc>gvllllllllA}<esc>
+    autocmd FileType tex vnoremap <leader>ud I\underline{<esc>gvlllllllllllA}<esc>
 
+    autocmd FileType tex inoremap <leader>bf \textbf{
+    autocmd FileType tex inoremap <leader>it \textit{
+    autocmd FileType tex inoremap <leader>ud \underline{
+
+    autocmd FileType tex nnoremap <super. :w<CR>:AsyncRun pdflatex main.tex<CR>
+    autocmd FileType tex nnoremap <F8> :w<CR>:AsyncRun pdflatex main.tex<CR>
+    autocmd FileType tex nnoremap <F9> :call system("evince main.pdf&")<CR>
+    autocmd FileType tex :set spell spelllang=en
+    autocmd FileType tex :highlight Spellbad cterm=underline
+    
 endif
 
 " show invisible character on :set list
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
 
 
-"""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
 " BUFFER AND WINDOWS
 
 " buffer management
@@ -172,6 +198,10 @@ set clipboard=unnamedplus
 " PYTHON
 nnoremap <leader>pe iimport IPython; IPython.embed()<esc>
 inoremap <leader>pe import IPython; IPython.embed()
+nnoremap <leader>pd iimport IPython; IPython.embed()<esc>
+inoremap <leader>pd import IPython; IPython.embed()
+nnoremap <leader>pm iimport matplotlib.pyplot as plt<esc>
+inoremap <leader>pm import matplotlib.pyplot as plt
 nnoremap <leader>pp iprint(
 inoremap <leader>pp print(
 
@@ -193,5 +223,10 @@ else
   let g:ycm_python_binary_path = 'python'
 endif
 
+" More usefull silent cmd
+command! -nargs=+ Silent
+\   execute 'silent <args>'
+\ | redraw!
 
-
+" TTS of buffer
+nnoremap <Silent> <leader>tts :execute "!(pico2wave -w /tmp/audio.wav \"".getreg('"')."\" && cvlc --play-and-exit /tmp/audio.wav &) &> /dev/null"<CR>
