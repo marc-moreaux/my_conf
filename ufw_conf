@@ -1,0 +1,12 @@
+sudo ufw reset
+sudo ufw limit in ssh comment 'allow SSH connections in'
+sudo ufw allow out 53 comment 'allow DNS calls out'
+sudo ufw allow out 123 comment 'allow NTP out'
+sudo ufw allow out http comment 'allow HTTP traffic out'
+sudo ufw allow out https comment 'allow HTTPS traffic out'
+sudo ufw allow out ftp comment 'allow FTP traffic out'
+sudo ufw allow out whois comment 'allow whois'
+sudo ufw allow out 68 comment 'allow the DHCP client to update'
+sudo ufw allow out from any to 140.82.118.3 port 22 comment 'allow GitHub'
+sudo ufw allow out from any to 140.82.118.4 port 22 comment 'allow GitHub'
+sudo ufw enable
