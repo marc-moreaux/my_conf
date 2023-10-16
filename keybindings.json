@@ -1,0 +1,64 @@
+// Place your key bindings in this file to override the defaults
+[
+    // Activate shift-enter on Ipython
+    {
+        "key": "shift+enter",
+        "command": "-python.execSelectionInTerminal",
+        "when": "editorTextFocus && !findInputFocussed && !jupyter.ownsSelection && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python'"
+    },
+    {   // use this when ipython gets borked using "python.execSelectionInTerminal"
+        "key": "shift+enter",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "interval": 40,
+            "sequence": [
+                "python.execSelectionInTerminal",
+                "workbench.action.terminal.focus",
+                "workbench.action.terminal.scrollToBottom",
+                {"command": "workbench.action.terminal.sendSequence",
+                    "args": { "text": "\u000D" }}, // this basically "presses enter"
+                "workbench.action.focusActiveEditorGroup"
+            ]
+        },
+        "when": "editorTextFocus && !findInputFocussed && !replaceInputFocussed && editorLangId == 'python'"
+    },
+
+    // Activate shift-enter on Shell
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.runSelectedText",
+        "when": "editorTextFocus && !findInputFocussed && editorLangId == 'shellscript'"
+    },
+ 
+    // Shift 1 screen right/left with crtl-tab
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.nextEditor"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.previousEditor"
+    },
+
+    //Change selection method for suggestion from arrow to tab": "",
+    {
+        "key": "tab",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "down",
+        "command": "-selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "up",
+        "command": "-selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    }
+]
